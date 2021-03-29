@@ -1,22 +1,26 @@
 import React, {useState} from 'react';
+import SwitchLabels from "./components/SwitchLabels";
 import './App.css';
+
+
 // 1 відмалювати список карточок базуючись на якомусь створеному вами масиві створити окрему кнопку, яка буде видаляти поточний перший елемент (або останній)  якщо у нас масив з 3 елементів і ми клікнули на кнопку 3 рази, то на екрані жодна карточка не має відмалюватись  (кнопки повернення до початкового стану не треба)
-function App() {
-  const [arr, changeArr] = useState([
-      {
-        id: 1,
-        title: 'title1'
-      },
-    {
-      id: 2,
-      title: 'title2'
-    },
-    {
-      id: 3,
-      title: 'title3'
-    }
-  ]);
-// //  1 var
+//  1 var
+// function App() {
+//   const [arr, changeArr] = useState([
+//       {
+//         id: 1,
+//         title: 'title1'
+//       },
+//     {
+//       id: 2,
+//       title: 'title2'
+//     },
+//     {
+//       id: 3,
+//       title: 'title3'
+//     }
+//   ]);
+
 // const removeFirst =() =>{
 // const newArr = [...arr]
 //     newArr.shift()
@@ -38,8 +42,24 @@ function App() {
 //         </div>
 //     );
 // }
+// export default App;
 
 //     //2 var
+// function App() {
+//     const [arr, changeArr] = useState([
+//         {
+//             id: 1,
+//             title: 'title1'
+//         },
+//         {
+//             id: 2,
+//             title: 'title2'
+//         },
+//         {
+//             id: 3,
+//             title: 'title3'
+//         }
+//     ]);
 //     const handleArrChange = (itemToRemove) => {
 //         if (itemToRemove !== 'first' && itemToRemove !== 'last') return;
 //         const newArr = [...arr];
@@ -59,11 +79,26 @@ function App() {
 //     </div>
 //   );
 // }
-
+// export default App;
 
 
 // 2 те саме, тільки з кнопкою реверт (повернутись до стану, де у нас видно 3 елемнети, як на початку)
 
+// function App() {
+//   const [arr, changeArr] = useState([
+//       {
+//         id: 1,
+//         title: 'title1'
+//       },
+//     {
+//       id: 2,
+//       title: 'title2'
+//     },
+//     {
+//       id: 3,
+//       title: 'title3'
+//     }
+//   ]);
 //     const [itemsToHide, setItemsToHide] = useState([]);
 // const filteredArr = arr.filter(el => !itemsToHide.includes(el.id));
 //     const handleArrChange = () => {
@@ -86,10 +121,73 @@ function App() {
 //         </div>
 //     );
 // }
-
+// export default App;
 
 // 3   задача з зірочкою) кожна карточка з завдання вище має мати кнопку, по кліку на яку, ми видаляємо зі списку саме її + реверт кнопка, щоб вернути все назад (ця кнопка одна дня всіх карточок, клікнули по ній і всі каркти вернулись назазд) (згадування функції фільтр в лекції було не просто так)
+// function App() {
+//   const [arr, changeArr] = useState([
+//       {
+//         id: 1,
+//         title: 'title1'
+//       },
+//     {
+//       id: 2,
+//       title: 'title2'
+//     },
+//     {
+//       id: 3,
+//       title: 'title3'
+//     }
+//   ]);
+//     const [itemsToHide, setItemsToHide] = useState([]);
+//     const filteredArr = arr.filter(el => !itemsToHide.includes(el.id));
+//     const handleArrChange = (itemToRemove) => {
+//         if (!itemToRemove) return;
+//         const clone = [...itemsToHide];
+//         clone.push(itemToRemove.id)
+//         setItemsToHide(clone)
+//     }
+//
+//     const onRevert =()=> {
+//         setItemsToHide([])
+//     }
+//     return (
+//         <div className="App">
+//             <h2>Test</h2>
+//             <button onClick={onRevert}>revert</button>
+//             <ul>
+//                 {filteredArr.map(el => (
+//                     <li
+//                         key={el.id}
+//                     >
+//                         {el.title} - <button onClick={()=>handleArrChange(el)}>remove</button> </li>
+//                 ))}
+//             </ul>
+//         </div>
+//     );
+// }
+//
+// export default App;
 
+
+//
+// 4   написати тогл компоненту, яка буде ховати або показувати елемент приклад з візуалкою тут https://material-ui.com/components/switches/#customized-switches
+
+function App() {
+    const [arr, changeArr] = useState([
+        {
+            id: 1,
+            title: 'title1'
+        },
+        {
+            id: 2,
+            title: 'title2'
+        },
+        {
+            id: 3,
+            title: 'title3'
+        }
+    ]);
     const [itemsToHide, setItemsToHide] = useState([]);
     const filteredArr = arr.filter(el => !itemsToHide.includes(el.id));
     const handleArrChange = (itemToRemove) => {
@@ -111,8 +209,10 @@ function App() {
                     <li
                         key={el.id}
                     >
-                        {el.title} - <button onClick={()=>handleArrChange(el)}>remove</button> </li>
+                        {el.title} - <SwitchLabels onClick={()=>handleArrChange(el)}/> <button onClick={()=>handleArrChange(el)}>remove</button> </li>
+
                 ))}
+
             </ul>
         </div>
     );
@@ -120,6 +220,3 @@ function App() {
 
 export default App;
 
-
-//
-// 4   написати тогл компоненту, яка буде ховати або показувати елемент приклад з візуалкою тут https://material-ui.com/components/switches/#customized-switches
